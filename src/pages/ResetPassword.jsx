@@ -14,9 +14,8 @@ const ResetPassword = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [snackbar, setSnackbar] = useState({})
-
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const handleSubmit = async () => {
-        console.log({ password, confirmPassword })
         if(!password){
             return setSnackbar({ open: true, type: 'error', message: "Password is required" });
         }
@@ -25,6 +24,9 @@ const ResetPassword = () => {
         }
         if (password !== confirmPassword) {
             return setSnackbar({ open: true, type: 'error', message: "Password did not match" });
+        }
+        if (!passwordRegex.test(password)) {
+            return setSnackbar({ open: true, type: 'error', message: 'Password must contain 8 chars and must contain 1 number, 1 special character, 1 uppercase and 1 lowercase letter' })
         }
         else {
             try {
