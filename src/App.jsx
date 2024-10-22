@@ -3,6 +3,7 @@ import './App.css'
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
+const ResetPassword = lazy(() => import('./pages/ResetPassword'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const Login = lazy(() => import('./pages/Login'))
 const Signup = lazy(() => import('./pages/Signup'))
@@ -28,6 +29,7 @@ function App() {
             <Route path='/forgot_password' element={<ForgotPassword />} />
             <Route path='/verify_otp' element={<VerifyOTP />} />
             <Route path='/signup' element={<Signup />} />
+            <Route path='/reset_password' element={<ResetPassword />} />
           </>}
           <Route element={<ProtectedRoute />}>
             <Route path='/signin' element={<Navigate to='/' />} />

@@ -18,7 +18,7 @@ const VerifyOTP = () => {
         if (otp.length === 4) {
             try {
                 await apiCall("post", "/user/verify_otp", { email, otp })
-                navigate('/')
+                navigate('/reset_password', {state: email})
             } catch (e) {
                 console.log(e, 'msg')
                 if(e.response.status === 429){
